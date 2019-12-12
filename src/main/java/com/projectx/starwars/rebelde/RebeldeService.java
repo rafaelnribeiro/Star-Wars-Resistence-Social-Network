@@ -91,8 +91,8 @@ public class RebeldeService {
     }
 
     private Integer getTotalPontos(ConjuntoDeItens conjunto){
-        return conjunto.getMunicao() * 4 +
-               conjunto.getArma() * 3 +
+        return conjunto.getArma() * 4 +
+               conjunto.getMunicao() * 3 +
                conjunto.getAgua() * 2 +
                conjunto.getComida();
     }

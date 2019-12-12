@@ -1,5 +1,6 @@
 package com.projectx.starwars.rebelde;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -8,6 +9,7 @@ import javax.validation.constraints.NotNull;
 @Table(name = "rebelde")
 @Entity
 @Data
+@AllArgsConstructor
 public class Rebelde {
 
     @Id
