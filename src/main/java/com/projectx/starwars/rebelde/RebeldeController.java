@@ -1,5 +1,8 @@
 package com.projectx.starwars.rebelde;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -15,12 +18,19 @@ public class RebeldeController {
     @Autowired
     private RebeldeService rebeldeService;
 
+    @ApiOperation("Adiciona um rebelde")
     @PostMapping
     public ResponseEntity<Rebelde> save(@Valid @RequestBody Rebelde rebelde){
         Rebelde reb = this.rebeldeService.save(rebelde);
         return ResponseEntity.ok(reb);
     }
 
+
+    @ApiOperation("Denuncia um rebelde como traidor")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Rebelde não encontrado")
+    })
     @PostMapping("/{id}/denunciar")
     public ResponseEntity<Boolean> denunciar(@PathVariable("id") Long id){
         try{
@@ -31,6 +41,13 @@ public class RebeldeController {
         }
     }
 
+
+    @ApiOperation("Realiza negocição entre dois rebeldes")
+    @ApiResponses(value = {
+            @ApiResponse(code = 200, message = "OK"),
+            @ApiResponse(code = 404, message = "Rebelde não encontrado"),
+            @ApiResponse(code = 403, message = "Negociação não equivalente")
+    })
     @PutMapping("/negociar")
     public ResponseEntity negociar(@Valid @RequestBody Negociacao negociacao){
         try{
