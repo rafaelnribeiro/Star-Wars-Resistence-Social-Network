@@ -3,6 +3,7 @@ package com.projectx.starwars.rebelde;
 import lombok.Data;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotNull;
 
 @Table(name = "rebelde")
 @Entity
@@ -13,7 +14,8 @@ public class Rebelde {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
 
-    @Column(name = "nome")
+    @NotNull
+    @Column(name = "nome", unique = true)
     private String nome;
 
     @Column(name = "idade")
